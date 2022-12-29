@@ -43,4 +43,15 @@ aparecer el msg en su sitio.*/
   let serviceParentMessage = '';
     serviceParentMessage = this.value;
   }
+
+
+/* **************************************************************************** */
+/* CHILD TO PARENT*/
+//mensaje = '';
+messg:string = '';
+
+onReceiveMsg($event: any) {
+  this.messg = $event;
+  console.log('childd');
+}
 }

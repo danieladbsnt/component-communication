@@ -21,9 +21,13 @@ serviceParentMessage = ''
 //OBSERVABLE PROP parent to child:
 value : string = '';
 
+/* ********************************************************************** */
+/* CHILD TO PARENT */
+mensaje = 'CHILD USING OUTPUT EVENT'
+@Output() messgEv = new EventEmitter<string>();
+
+sendMss() {
+  this.messgEv.emit(this.mensaje)
+} 
 
 }
-
-/*
-https://angular.io/start  output
-*/

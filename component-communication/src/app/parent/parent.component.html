@@ -1,6 +1,6 @@
 <div class="parent-div">
     <h1>PARENT</h1>
-    <h4>Message:</h4>
+    <h4>Message: {{messg}}</h4>
     <div class="parent-div-center">
       <!-- <button (click)="serviceParent(value)">Use Service</button> -->
       <button (click)="serviceParent()">Use Service</button>
@@ -8,7 +8,7 @@
       <button (click)="observableParent()">Use Observable</button>
     </div>
   
-    <app-child 
+    <app-child (messgEv)="onReceiveMsg($event)"
               [inputChildMessage]="inputParentMessage"
     ></app-child>
   
