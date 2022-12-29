@@ -10,9 +10,10 @@ private msg = new BehaviorSubject<string>('PARENT USING SERVICE PROPERTY');
 
 public message = this.msg.asObservable();
 
-constructor() {
-  console.log(this.msg);
- }
+constructor() {}
+
+//SERVICE PROP:
+ public servMsg = 'PARENT USING SERVICE PROPERTY';
 
 }
 
