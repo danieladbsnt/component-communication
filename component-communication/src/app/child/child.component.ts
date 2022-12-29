@@ -8,17 +8,19 @@ import { ComumnicationService } from '../communication.service';
   styleUrls: ['./child.component.css']
 })
 export class ChildComponent {
-//INPUT PROP
-@Input() inputChildMessage = '';
-
-//OBSERVABLE PROP:
-value : string = '';
-
 constructor(private communicationService: ComumnicationService) {
 //this.communicationService.message.subscribe(msg => this.value = msg)
 //si lo dejo sin comentar aparece el message nada más iniciarlizarse la app, y 
 //lo que queremos es que aparezca cuando le damos click al btn
 }
+//INPUT PROP parent to child:
+@Input() inputChildMessage = '';
+//SERVICE PROP parent to child:
+// serviceParentMessage = this.communicationService.serviceParentMessage //¿?
+serviceParentMessage = ''
+//OBSERVABLE PROP parent to child:
+value : string = '';
+
 
 }
 

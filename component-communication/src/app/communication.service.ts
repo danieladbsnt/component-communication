@@ -6,15 +6,18 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class ComumnicationService {
 //OBSERVABLE PROP:
-private msg = new BehaviorSubject<string>('PARENT USING SERVICE PROPERTY');
+private msg = new BehaviorSubject<string>('PARENT USING OBSERVABLE PROPERTY');
 
 public message = this.msg.asObservable();
 
 constructor() {}
 
 //SERVICE PROP:
- public servMsg = 'PARENT USING SERVICE PROPERTY';
-
+ //public servMsg = 'PARENT USING SERVICE PROPERTY';
+public serviceParentMessage = 'PARENT USING SERVICE PROPERTY';
+ getMsg() {
+  return this.serviceParentMessage;
+ }
 }
 
 
