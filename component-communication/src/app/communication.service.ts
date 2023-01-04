@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,8 @@ public message = this.msg.asObservable();
 constructor() {}
 
 //SERVICE PROP:
-public serviceParentMessage = 'PARENT USING SERVICE PROPERTY';
+serviceParentMessage = 'parent using service';
+
  getMsg() {
   return this.serviceParentMessage;
  }

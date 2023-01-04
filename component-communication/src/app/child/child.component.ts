@@ -14,12 +14,25 @@ constructor(private communicationService: ComumnicationService,
 }
 //INPUT PROP parent to child:
 @Input() inputChildMessage = '';
+
+
+
+
 /* ------------------------------------------------------------------------- */
 //SERVICE PROP parent to child:
-serviceParentMessage = ''
+//serviceParentMessage = this.communicationService.getMsg(); 
+
+
+
 /* ------------------------------------------------------------------------- */ 
 //OBSERVABLE PROP parent to child:
 value : string = '';
+
+
+
+
+
+
 
 /* ********************************************************************** */
 /* CHILD TO PARENT */

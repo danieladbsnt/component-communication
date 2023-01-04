@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
 import { ComumnicationService } from '../communication.service';
 
 @Component({
@@ -10,18 +11,29 @@ export class ParentComponent {
 
   constructor(private communicationService: ComumnicationService) { }
 
+
+
  /* ----- INPUT PROP: message parent to child with Input ------ */
   inputParentMessage = '';
 
   inputParent() {
     this.inputParentMessage = 'PARENT USING INPUT PROPERTY';
   }
+
+
+
+
 /* ----------------------------------------------------------------------------- */
 /* ------ SERVICE PROP: message parent to child with Service ------ */
 serviceParent(){
-  console.log(this.communicationService.serviceParentMessage);
-  return this.communicationService.serviceParentMessage;
+  // console.log(this.communicationService.getMsg());
+  // return this.communicationService.getMsg();
+
 }
+
+
+
+
 /* ----------------------------------------------------------------------------- */
 /* ----- OBSERVABLE PROP: message parent to child with Service ------- */
 value: string = '';
@@ -32,6 +44,8 @@ observableParent() {
   )
   console.log(this.value);
 }
+
+
 
 
 /* **************************************************************************** */
