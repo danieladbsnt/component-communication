@@ -7,7 +7,7 @@
       <button (click)="observableParent()">Use Observable</button>
     </div>
   
-    <app-child 
+    <app-child (messgEv)="onReceiveMsg($event)"
               [inputChildMessage]="inputParentMessage"
     ></app-child>
   
