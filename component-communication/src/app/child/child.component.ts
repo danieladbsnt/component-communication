@@ -11,49 +11,57 @@ export class ChildComponent {
 constructor(private communicationService: ComumnicationService,
             private childCommunication: ChildCommunicationService        
 ) {
+  //Recibimos la información del servicio para hacer la comunicación child
+  //to parent  
   this.communicationService.serviceParentMessage.subscribe(
     (stringServParentMsg:string) => this.serviceParentMessage = stringServParentMsg 
-    
   )
 }
-//INPUT PROP parent to child:
+
+
+/* ----- INPUT PROP parent to child ------ */
 @Input() inputChildMessage = '';
 
 
 
 
 /* ------------------------------------------------------------------------- */
-//SERVICE PROP parent to child:
-//serviceParentMessage = this.communicationService.getMsg(); 
+/* ------ SERVICE PROP parent to child ------ */ 
 serviceParentMessage = '';
 
 
 /* ------------------------------------------------------------------------- */ 
-//OBSERVABLE PROP parent to child:
+/* ------ OBSERVABLE PROP parent to child ------- */
 value : string = '';
-
-
-
 
 
 
 
 /* ********************************************************************** */
 /* CHILD TO PARENT */
-//OUTPUT PROP: CHILD TO PARENT
-mensaje = 'CHILD USING OUTPUT EVENT'
+/* ------ OUTPUT PROP: CHILD TO PARENT ------- */
+mensaje = 'child using output prop'
 @Output() messgEv = new EventEmitter<string>();
 
 outputChild() {
   this.messgEv.emit(this.mensaje)
 } 
+
+
+
 /* ------------------------------------------------------------------------ */
-//SERVICE PROP:
+/* ------ SERVICE PROP: CHILD TO PARENT ------- */
+stringServiceChildMsg: string = 'child using service prop';
+
 serviceChild() {
-  console.log(this.childCommunication.serviceChildMsg);
+  this.childCommunication.serviceChildMsg.emit(this.stringServiceChildMsg);
 }
+
+
+
+
 /* ------------------------------------------------------------------------ */
-//OBSERVABLE PROP: CHILD TO PARENT
+/* ------ OBSERVABLE PROP: CHILD TO PARENT ------- */
 val: string = '';
 
 observableChild() {
