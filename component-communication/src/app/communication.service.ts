@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable({
@@ -13,11 +13,8 @@ public message = this.msg.asObservable();
 constructor() {}
 
 //SERVICE PROP:
-serviceParentMessage = 'parent using service';
+serviceParentMessage = new EventEmitter<string>();
 
- getMsg() {
-  return this.serviceParentMessage;
- }
 }
 
 /*

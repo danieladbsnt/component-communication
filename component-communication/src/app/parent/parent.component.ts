@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { ComumnicationService } from '../communication.service';
 
 @Component({
@@ -25,12 +25,10 @@ export class ParentComponent {
 
 /* ----------------------------------------------------------------------------- */
 /* ------ SERVICE PROP: message parent to child with Service ------ */
+stringServParentMsg: string = 'parent using service prop'
 serviceParent(){
-  // console.log(this.communicationService.getMsg());
-  // return this.communicationService.getMsg();
-
+  this.communicationService.serviceParentMessage.emit(this.stringServParentMsg);
 }
-
 
 
 

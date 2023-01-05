@@ -11,6 +11,10 @@ export class ChildComponent {
 constructor(private communicationService: ComumnicationService,
             private childCommunication: ChildCommunicationService        
 ) {
+  this.communicationService.serviceParentMessage.subscribe(
+    (stringServParentMsg:string) => this.serviceParentMessage = stringServParentMsg 
+    
+  )
 }
 //INPUT PROP parent to child:
 @Input() inputChildMessage = '';
@@ -21,7 +25,7 @@ constructor(private communicationService: ComumnicationService,
 /* ------------------------------------------------------------------------- */
 //SERVICE PROP parent to child:
 //serviceParentMessage = this.communicationService.getMsg(); 
-
+serviceParentMessage = '';
 
 
 /* ------------------------------------------------------------------------- */ 
