@@ -16,28 +16,31 @@ constructor(private communicationService: ComumnicationService,
   this.communicationService.serviceParentMessage.subscribe(
     (stringServParentMsg:string) => this.serviceParentMessage = stringServParentMsg 
   )
+
+  //funciona: aparece el observable desde parent en el component.html, pero queremos que
+  //aparezca solo cuando le damos click al btn en parent.
+  this.communicationService.messageParent$.subscribe(
+    (msg) => this.valor = msg
+    
+  )
 }
 
 
 /* ----- INPUT PROP parent to child ------ */
 @Input() inputChildMessage = '';
 
-
-
-
 /* ------------------------------------------------------------------------- */
 /* ------ SERVICE PROP parent to child ------ */ 
 serviceParentMessage = '';
 
-
 /* ------------------------------------------------------------------------- */ 
 /* ------ OBSERVABLE PROP parent to child ------- */
-value : string = '';
+valor = '';
 
 
 
 
-/* ********************************************************************** */
+/* ******************************************************************************* */
 /* CHILD TO PARENT */
 /* ------ OUTPUT PROP: CHILD TO PARENT ------- */
 mensaje = 'child using output prop'
@@ -47,8 +50,6 @@ outputChild() {
   this.messgEv.emit(this.mensaje)
 } 
 
-
-
 /* ------------------------------------------------------------------------ */
 /* ------ SERVICE PROP: CHILD TO PARENT ------- */
 stringServiceChildMsg: string = 'child using service prop';
@@ -56,9 +57,6 @@ stringServiceChildMsg: string = 'child using service prop';
 serviceChild() {
   this.childCommunication.serviceChildMsg.emit(this.stringServiceChildMsg);
 }
-
-
-
 
 /* ------------------------------------------------------------------------ */
 /* ------ OBSERVABLE PROP: CHILD TO PARENT ------- */
