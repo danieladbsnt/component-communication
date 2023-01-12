@@ -1,14 +1,14 @@
 <div class="parent-div">
     <h1>PARENT</h1>
-    <h4>Message:{{serviceChildMessage | uppercase}} {{messg | uppercase}}</h4>
+    <h4>Message:{{childToParentMessage | uppercase}} </h4>
     <div class="parent-div-center">
-      <button (click)="serviceParent()">Use Service</button>
-      <button (click)="inputParent()">Use Input Property</button>
-      <button (click)="observableParent()">Use Observable</button>
+      <button mat-stroked-button color="primary" (click)="serviceParent()">Use Service</button>
+      <button mat-stroked-button color="primary" (click)="inputParent()">Use Input Property</button>
+      <button mat-stroked-button color="primary" (click)="observableParent()">Use Observable</button>
     </div>
   
     <app-child (messgEv)="onReceiveMsg($event)"
-              [inputChildMessage]="inputParentMessage"
+              [parentToChildMessage]="inputParentMessage"
     ></app-child>
   
   
