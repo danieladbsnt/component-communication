@@ -9,63 +9,47 @@ import { ComumnicationService } from '../communication.service';
   styleUrls: ['./parent.component.css']
 })
 export class ParentComponent {
-display: boolean = false;
   constructor(private communicationService: ComumnicationService,
               private childCommunication: ChildCommunicationService
     ) { 
-    //Recibimos la información del servicio para hacer la comunicación parent
+    //1*Recibimos la información del servicio para hacer la comunicación parent
     //to child  
       this.childCommunication.serviceChildMsg.subscribe(
-        (string: string) => this.serviceChildMessage = string
+        (string: string) => this.childToParentMessage = string
       )
     }
 
 
  /* ----- INPUT PROP: message parent to child with Input ------ */
   inputParentMessage = '';
-
   inputParent() {
     this.inputParentMessage = 'parent using input prop';
   }
-
 /* ----------------------------------------------------------------------------- */
 /* ------ SERVICE PROP: message parent to child with Service ------ */
 stringServParentMsg: string = 'parent using service prop';
-
 serviceParent(){
   this.communicationService.serviceParentMessage.emit(this.stringServParentMsg);
 }
-
 /* ----------------------------------------------------------------------------- */
-/* ----- OBSERVABLE PROP: message parent to child with Service ------- */
+/* ----- OBSERVABLE PROP: message parent to child with Observable ------- */
 observableParentMs = '';
-
 observableParent() {
-  // this.communicationService.message.subscribe(
-  //   msg => this.value = msg
-  // )
-  // console.log(this.value);
-  
-this.communicationService.messageObservableParent();
-
+this.communicationService.msgObservableParent$.subscribe(
+  mensj => this.observableParentMs = mensj
+)
+console.log('parent obs',this.observableParentMs);
 }
-
-
-
-
 
 /* **************************************************************************** */
 /* CHILD TO PARENT */
 
 /* ------- OUTPUT PROP: CHILD TO PARENT ------ */
-messg:string = '';
-
 onReceiveMsg($event: any) {
-  this.messg = $event;
+  this.childToParentMessage = $event;
 }
-
 /* ------------------------------------------------------------------------ */
-/* ------- SERVICE PROP: CHILD TO PARENT ------ */
-serviceChildMessage = '';
+/* ------- 1* PROP: CHILD TO PARENT ------ */
+childToParentMessage = '';
 
 }
