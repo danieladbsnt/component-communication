@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import {MatButtonModule} from '@angular/material/button';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 import { AppComponent } from './app.component';
 import { ChildComponent } from './child/child.component';
@@ -13,7 +15,9 @@ import { ParentComponent } from './parent/parent.component';
     ParentComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    MatButtonModule,
+    MatButtonToggleModule
   ],
   providers: [
     ComumnicationService
