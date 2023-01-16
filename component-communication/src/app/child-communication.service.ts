@@ -16,7 +16,12 @@ serviceChildMsg = new EventEmitter<string>();
 
 /*-----------------------------------------------------------------------------*/
 //OBSERVABLE
-private mss = new BehaviorSubject<string>('child using observable prop');
+public observableMsg: BehaviorSubject<string> = new BehaviorSubject<string>('');
+msgObservableChild$ = this.observableMsg.asObservable();
 
-public mensajeObservable = this.mss.asObservable();
+setMsgChildParent() {
+  this.observableMsg.next('child using observable prop')
+}
+
+
 }
