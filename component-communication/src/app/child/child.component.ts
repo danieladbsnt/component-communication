@@ -16,6 +16,9 @@ constructor(private communicationService: ComumnicationService,
   this.communicationService.serviceParentMessage.subscribe(
     (stringServParentMsg:string) => this.parentToChildMessage = stringServParentMsg 
   )
+
+  //parent to child
+  this.communicationService.msgObservableParent$.subscribe((msg)=> this.parentToChildMessage = msg)
 }
 
 
@@ -39,11 +42,7 @@ serviceChild() {
 }
 /* ------------------------------------------------------------------------ */
 /* ------ OBSERVABLE PROP: CHILD TO PARENT ------- */
-observableChildVal: string = '';
 observableChild() {
-  this.childCommunication.mensajeObservable.subscribe(
-    mensj => this.observableChildVal = mensj
-  )
-  console.log('child obs',this.observableChildVal);
+  this.childCommunication.setMsgChildParent()
 }
 }
