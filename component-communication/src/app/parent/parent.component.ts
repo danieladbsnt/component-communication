@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
 import { ChildCommunicationService } from '../child-communication.service';
 import { ComumnicationService } from '../communication.service';
 
@@ -17,6 +16,10 @@ export class ParentComponent {
       this.childCommunication.serviceChildMsg.subscribe(
         (string: string) => this.childToParentMessage = string
       )
+
+
+    //child to parent
+    this.childCommunication.msgObservableChild$.subscribe((msg) => this.childToParentMessage = msg)
     }
 
 
@@ -33,12 +36,8 @@ serviceParent(){
 }
 /* ----------------------------------------------------------------------------- */
 /* ----- OBSERVABLE PROP: message parent to child with Observable ------- */
-observableParentMs = '';
 observableParent() {
-this.communicationService.msgObservableParent$.subscribe(
-  mensj => this.observableParentMs = mensj
-)
-console.log('parent obs',this.observableParentMs);
+this.communicationService.setMsgParentChild()
 }
 
 /* **************************************************************************** */
