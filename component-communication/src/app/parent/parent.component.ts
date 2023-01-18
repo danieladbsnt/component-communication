@@ -23,8 +23,11 @@ export class ParentComponent implements OnInit, OnDestroy{
 ngOnInit(): void {
   //1*Recibimos la información del servicio para hacer la comunicación parent
 //to child  
-  this.childCommunication.serviceChildMsg.pipe(takeUntil(this._unsuscribe$)).subscribe(
-    (string: string) => this.childToParentMessage = string
+  this.childCommunication.serviceChildMsg.pipe(takeUntil(this._unsuscribe$)).subscribe({
+    next: (string: string) => {
+      this.childToParentMessage = string
+    }
+  }
   )
 
 //child to parent
