@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subject, takeUntil } from 'rxjs';
 import { ChildCommunicationService } from '../child-communication.service';
 import { ComumnicationService } from '../communication.service';
 
@@ -7,30 +8,35 @@ import { ComumnicationService } from '../communication.service';
   templateUrl: './parent.component.html',
   styleUrls: ['./parent.component.css']
 })
-export class ParentComponent {
+export class ParentComponent implements OnInit, OnDestroy{
+  childToParentMessage = '';
+  message!: String;
+  inputParentMessage!: String;
+  stringServParentMsg: string = 'parent using service prop';
+
+  private _unsuscribe$ = new Subject<boolean>();
+
   constructor(private communicationService: ComumnicationService,
               private childCommunication: ChildCommunicationService
-    ) { 
-    //1*Recibimos la información del servicio para hacer la comunicación parent
-    //to child  
-      this.childCommunication.serviceChildMsg.subscribe(
-        (string: string) => this.childToParentMessage = string
-      )
+    ) {}
 
+ngOnInit(): void {
+  //1*Recibimos la información del servicio para hacer la comunicación parent
+//to child  
+  this.childCommunication.serviceChildMsg.pipe(takeUntil(this._unsuscribe$)).subscribe(
+    (string: string) => this.childToParentMessage = string
+  )
 
-    //child to parent
-    this.childCommunication.msgObservableChild$.subscribe((msg) => this.childToParentMessage = msg)
-    }
-
+//child to parent
+this.childCommunication.msgObservableChild$.subscribe((msg) => this.childToParentMessage = msg)
+}
 
  /* ----- INPUT PROP: message parent to child with Input ------ */
-  inputParentMessage = '';
   inputParent() {
-    this.inputParentMessage = 'parent using input prop';
+    this.inputParentMessage = new String('parent using input prop');
   }
 /* ----------------------------------------------------------------------------- */
 /* ------ SERVICE PROP: message parent to child with Service ------ */
-stringServParentMsg: string = 'parent using service prop';
 serviceParent(){
   this.communicationService.serviceParentMessage.emit(this.stringServParentMsg);
 }
@@ -41,14 +47,15 @@ this.communicationService.setMsgParentChild()
 }
 
 /* **************************************************************************** */
-/* CHILD TO PARENT */
 
 /* ------- OUTPUT PROP: CHILD TO PARENT ------ */
 onReceiveMsg($event: any) {
   this.childToParentMessage = $event;
 }
-/* ------------------------------------------------------------------------ */
-/* ------- 1* PROP: CHILD TO PARENT ------ */
-childToParentMessage = '';
+
+ngOnDestroy(): void {
+  this._unsuscribe$.next(true)
+  this._unsuscribe$.complete();
+}
 
 }
