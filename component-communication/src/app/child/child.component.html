@@ -1,7 +1,7 @@
 <div class="child-div">
 
     <h1>CHILD:</h1>
-    <h4>Message: {{parentToChildMessage | uppercase}} </h4>
+    <h4>Message: {{parentToChildMessage.toString()| uppercase}} </h4>
   <div class="child-div-center">
     <button mat-stroked-button color="primary" (click)="serviceChild()">Use Service</button>
     <button mat-stroked-button color="primary" (click)="outputChild()">Use Output Property</button>
